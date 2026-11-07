@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#153a65">
+    <meta name="description" content="Figures and supplementary materials for Junheng Chan's MaTiPS 2026 poster on vocal–ventricular fold coupling, ArtiSynth and lattice Boltzmann airflow.">
+    <title>VVFC poster supplement | Junheng Chan | MaTiPS 2026</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./supplement.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="project-header">
+        <p class="eyebrow">MaTiPS 2026 <span aria-hidden="true">/</span> Poster supplement</p>
+        <h1>Towards Fluid–Structure Interaction Modelling of Vocal–Ventricular Fold Coupling in ArtiSynth Using the Lattice Boltzmann Method</h1>
+        <p class="author">Junheng Chan</p>
+        <p class="affiliation">Division of Linguistics and Multilingual Studies<br>Nanyang Technological University, Singapore</p>
+        <nav class="resource-links" aria-label="Poster resources">
+          <a class="resource-link pending" data-pdf="./downloads/poster.pdf" aria-disabled="true" tabindex="-1">Poster PDF <span class="pending-label">to be added</span></a>
+          <a class="resource-link pending" data-pdf="./downloads/abstract.pdf" aria-disabled="true" tabindex="-1">Abstract PDF <span class="pending-label">to be added</span></a>
+          <a class="resource-link profile-link" href="https://bit.ly/j-chan" target="_blank" rel="noopener noreferrer">My profile <svg class="external-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3H3v10h10v-3M9 3h4v4M7 9l6-6"/></svg></a>
+        </nav>
+      </header>
+
+      <section class="video-section" aria-labelledby="video-heading">
+        <div class="section-heading"><h2 id="video-heading">Airflow in motion</h2><span class="figure-reference">Figure 1B</span></div>
+        <div class="video-frame">
+          <div id="video-placeholder" class="video-placeholder">
+            <svg class="play-mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M26 21 44 32 26 43Z" fill="currentColor"/></svg>
+            <p>Screen recording to be added</p>
+          </div>
+          <!-- Add the recording as assets/first-lbm-run.mp4. The player appears automatically. -->
+          <video id="airflow-video" controls playsinline preload="metadata" aria-label="Screen recording of the initial LBM airflow run" hidden>
+            Your browser does not support embedded video.
+          </video>
+        </div>
+        <p class="caption">The initial LBM airflow run.</p>
+      </section>
+
+      <section class="figure-section" aria-labelledby="sequence-heading">
+        <h2 id="sequence-heading">The staged update</h2>
+        <a class="figure-link" href="./assets/staged_sequence.png" target="_blank" rel="noopener" aria-label="Open the staged update diagram at full size">
+          <img class="sequence" src="./assets/staged_sequence.png" width="4221" height="825" alt="Initial airflow, pressure loading and FEM movement, airflow in the deformed geometry, then updated surface loads." loading="lazy" decoding="async">
+        </a>
+      </section>
+
+      <section class="figure-section" aria-labelledby="initial-heading">
+        <div class="section-heading"><h2 id="initial-heading">1. Initial pressure and airflow</h2><span class="figure-reference">Figure 1</span></div>
+        <figure>
+          <a class="figure-link" href="./assets/initial_airflow.png" target="_blank" rel="noopener" aria-label="Open the initial pressure and airflow figure at full size">
+            <img src="./assets/initial_airflow.png" width="4167" height="1990" alt="Mid-coronal pressure and airflow fields around the vocal and ventricular folds in the initial geometry." loading="lazy" decoding="async">
+          </a>
+          <figcaption>Pressure uses the chosen 100 Pa loading scale; speed is in lattice units.</figcaption>
+        </figure>
+      </section>
+
+      <section class="figure-section" aria-labelledby="response-heading">
+        <div class="section-heading"><h2 id="response-heading">2. Pressure-driven fold movement</h2><span class="figure-reference">Figure 2</span></div>
+        <figure>
+          <a class="figure-link" href="./assets/pressure_response_and_geometry.png" target="_blank" rel="noopener" aria-label="Open the FEM response and geometry comparison at full size">
+            <img src="./assets/pressure_response_and_geometry.png" width="4019" height="1711" alt="Maximum nodal displacement under pressure loading, and a close-up comparing initial and deformed vocal-fold surfaces." loading="lazy" decoding="async">
+          </a>
+          <figcaption>Gravity off. The recorded deformation was used to recompute airflow.</figcaption>
+        </figure>
+      </section>
+
+      <section class="figure-section" aria-labelledby="updated-flow-heading">
+        <h2 id="updated-flow-heading">3. Airflow after the geometry update</h2>
+        <figure>
+          <a class="figure-link" href="./assets/supplement_airflow_update.png" target="_blank" rel="noopener" aria-label="Open the initial and deformed airflow comparison at full size">
+            <img src="./assets/supplement_airflow_update.png" width="4098" height="1815" alt="Airflow speed in the initial and recorded deformed geometries, using one colour scale." loading="lazy" decoding="async">
+          </a>
+          <figcaption>Both flows shown after 6,000 lattice steps, using the same colour scale.</figcaption>
+        </figure>
+      </section>
+
+      <section class="figure-section" aria-labelledby="loads-heading">
+        <div class="section-heading"><h2 id="loads-heading">4. Updated surface loads</h2><span class="figure-reference">Table 1</span></div>
+        <figure>
+          <a class="figure-link" href="./assets/load_change_table.png" target="_blank" rel="noopener" aria-label="Open the load-change table at full size">
+            <img src="./assets/load_change_table.png" width="3465" height="1026" alt="Requested load resultants increase by about 2.3 to 2.4 percent on the vocal folds and decrease by about 4.9 to 5.0 percent on the ventricular folds." loading="lazy" decoding="async">
+          </a>
+          <figcaption>Requested resultant magnitudes, including fixed-node loads. Pressure and surface geometry both change.</figcaption>
+        </figure>
+      </section>
+
+      <p class="scope-note">Exploratory staged tests: developing airflow and a chosen loading scale. This sequence does not demonstrate continuous FSI or self-sustained oscillation.</p>
+
+      <footer>
+        <a href="./downloads/figure_code_and_data.zip" download>Plotting code + data</a>
+        <p>MaTiPS 2026 · Updated 7 November 2026</p>
+      </footer>
+    </main>
+  </body>
+</html>
