@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153a65">
+  <meta name="description" content="Video, additional method notes and exploratory gravity/coupling trials accompanying Junheng Chan's MaTiPS 2026 poster.">
+  <title>VVFC poster supplement | Junheng Chan | MaTiPS 2026</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./supplement.js" defer></script>
+</head>
+<body>
+<main class="page">
+  <header class="project-header">
+    <p class="eyebrow">MaTiPS 2026 · Poster supplement</p>
+    <h1>Towards Fluid–Structure Interaction Modelling of Vocal–Ventricular Fold Coupling in ArtiSynth Using the Lattice Boltzmann Method</h1>
+    <p class="byline">Junheng Chan <span aria-hidden="true">·</span> Nanyang Technological University, Singapore</p>
+    <nav class="resource-links" aria-label="Resources">
+      <a class="resource-link pending" data-pdf="./downloads/poster.pdf" aria-disabled="true" tabindex="-1">Poster PDF <span class="pending-label">to be added</span></a>
+      <a class="resource-link pending" data-pdf="./downloads/abstract.pdf" aria-disabled="true" tabindex="-1">Abstract PDF <span class="pending-label">to be added</span></a>
+      <a class="resource-link" href="https://bit.ly/j-chan" target="_blank" rel="noopener noreferrer">My profile <span aria-hidden="true">↗</span></a>
+      <a class="resource-link" href="./downloads/minimal_code_and_data.zip" download>Selected code + data <span class="file-size">small ZIP</span></a>
+    </nav>
+  </header>
+
+  <div class="top-grid">
+    <section class="video-section" aria-labelledby="video-heading">
+      <div class="section-heading"><h2 id="video-heading">Airflow in motion</h2><span class="tag">Figure 1B</span></div>
+      <div class="video-frame">
+        <div id="video-placeholder" class="video-placeholder">
+          <svg class="play-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M19 15 34 24 19 33Z" fill="currentColor"/></svg>
+          <p>Screen recording to be added</p>
+        </div>
+        <!-- Add assets/first-lbm-run.mp4. The player appears automatically. -->
+        <video id="airflow-video" controls playsinline preload="metadata" aria-label="Initial fixed-geometry LBM airflow run corresponding to Figure 1B" hidden>
+          Your browser does not support embedded video.
+        </video>
+      </div>
+      <p class="caption">The initial airflow run shown in Figure 1B, with fixed fold boundaries. This is not a recording of moving-boundary FSI.</p>
+    </section>
+
+    <aside class="method-notes" aria-labelledby="notes-heading">
+      <h2 id="notes-heading">Additional method notes</h2>
+      <ul class="compact-list">
+        <li><strong>Three slices, not 3D flow.</strong> Independent 314 × 402 D2Q9 grids at z = −4.67, 0 and +4.67 mm; 0.05 mm cells.</li>
+        <li><strong>Loading.</strong> Sampled pressure was distributed over FEM surface triangles and their nodes. Shear forces were not transferred.</li>
+        <li><strong>Staged sequence.</strong> The pressure pattern was scaled to a chosen 100 Pa difference. Flow remained developing; this did not calibrate physical air properties.</li>
+      </ul>
+      <details>
+        <summary>Implementation and provenance</summary>
+        <p>Yong’s FEM builders were retained. The original airflow preview used Kummerländer’s prototype and Moisik’s Java integration. The later GPU solver, driver and coupling workflow were developed through a separate AI-assisted reimplementation with OpenAI’s ChatGPT.</p>
+        <p>The staged loading sequence and the moving-boundary trials below are separate experiments.</p>
+      </details>
+    </aside>
+  </div>
+
+  <section class="coupling-section" aria-labelledby="coupling-heading">
+    <div class="section-heading"><h2 id="coupling-heading">Exploratory coupling with gravity</h2><span class="tag">Additional trials</span></div>
+    <p class="trial-intro"><strong>Gravity/contact check:</strong> a run to 5 code units with fixed LBM-derived loads and the legacy gravity setting produced load-bearing vocal–ventricular contact at about 0.45–0.46 code time. Airflow was not recomputed during that test, so it was not continuous FSI.</p>
+    <div class="coupling-grid">
+      <div class="comparison">
+        <p><strong>Moving-boundary attempt:</strong> both runs loaded the FEM with airflow pressure. The <strong>coupled</strong> run updated fluid boundaries, wall velocity and load mapping as the folds moved; the <strong>one-way</strong> run kept these at the initial geometry.</p>
+        <figure>
+          <a class="figure-link" href="./assets/transient_comparison.png" target="_blank" rel="noopener" aria-label="Open the early transient comparison at full size">
+            <img src="./assets/transient_comparison.png" width="4200" height="1925" alt="Coupled and one-way runs have similar early ventricular descent, while their pressure loading diverges." decoding="async">
+          </a>
+          <figcaption>At 0.4 code time, mean ventricular descent was 0.538 mm (coupled) versus 0.558 mm (one-way): about 0.020 mm less with feedback.</figcaption>
+        </figure>
+        <details>
+          <summary>How to read this comparison</summary>
+          <p>Downward movement averages free-node vertical displacement within each ventricular fold, then gives equal weight to the two sides. Pressure is the mean vertical resultant per ventricular fold, including loads at fixed nodes.</p>
+          <p>The 0–0.4 interval was selected after the coupled failure and before the control results. No load-bearing contact was recorded in either run in this interval. Each tracked vocal node’s displacement difference stayed below 0.001 mm in each plotted direction.</p>
+        </details>
+      </div>
+      <div class="trial-results">
+        <h3>Why the result is inconclusive</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>Last accepted FEM time and stopping condition</caption>
+            <thead><tr><th scope="col">Run</th><th scope="col">Time*</th><th scope="col">Stopped by</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Coupled</th><td>0.650</td><td>Fluid-density guard during the next update</td></tr>
+              <tr><th scope="row">One-way</th><td>0.485</td><td>Predicted node travel exceeded half a fluid cell per exchange</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small-note">*Code units; the historical physical-time conversion is unverified.</p>
+        <ul class="compact-list">
+          <li><strong>Large gravity-driven descent.</strong> The early feedback difference was small compared with the overall movement.</li>
+          <li><strong>The near-contact gap was poorly resolved.</strong> The coupled density hotspot lay in a gap about one cell wide. Resolution, cell refill and coupling errors were not separated.</li>
+          <li><strong>Calibration and convergence are still needed.</strong> The legacy gravity setting corresponds to 98 m/s² under the adopted units; neither run demonstrates physiological accuracy or self-sustained oscillation.</li>
+        </ul>
+        <details>
+          <summary>Numerical settings and next checks</summary>
+          <p>The transient runs used a 100 Pa target pressure difference, ramped over 0.5 code units; 200 lattice updates per 0.005-code exchange; and an elevated effective kinematic viscosity of 1.67 × 10⁻⁴ m²/s.</p>
+          <p>The one-way stop was a mechanical-motion guard, not a fluid-density failure. The coupled rejected fluid field was not applied to the FEM. Coupled boundaries were updated at exchanges; newly fluid cells were refilled without strict mass conservation.</p>
+          <p>Next checks: calibrate units and gravity, equilibrate the initial tissue state, and test finer near-contact grids and shorter exchange intervals.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>MaTiPS 2026 · Updated 7 November 2026</span>
+    <span>Website made with help from ChatGPT.</span>
+  </footer>
+</main>
+</body>
+</html>

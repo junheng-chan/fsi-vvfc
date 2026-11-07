@@ -1,0 +1,56 @@
+:root{color-scheme:light;--ink:#1d2b3c;--muted:#596a7a;--navy:#153a65;--line:#dbe3eb;--light:#f3f7fb}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{font-size:14px}
+body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+a{color:var(--navy);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid #1668b6;outline-offset:4px}
+.page{max-width:1100px;margin:0 auto;padding:24px 28px 16px}
+.project-header{padding-bottom:17px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.eyebrow{margin:0 0 6px;color:var(--navy);font-size:.77rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+h1{max-width:1000px;margin:0 0 9px;font-size:1.65rem;line-height:1.28;font-weight:700}
+.byline{margin:0;color:var(--muted);font-size:.88rem}
+.byline span{padding:0 5px}
+.resource-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.resource-link{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid #becddd;border-radius:5px;background:#fff;font-size:.82rem;font-weight:600;text-decoration:none}
+.resource-link:hover{background:var(--light)}
+.resource-link.pending{color:var(--muted);border-style:dashed;cursor:default}
+.pending-label,.file-size{font-size:.73rem;font-weight:400}
+.top-grid{display:grid;grid-template-columns:minmax(0,1.36fr) minmax(0,1fr);gap:25px;align-items:start}
+.section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px}
+h2{margin:0 0 9px;color:var(--navy);font-size:1.13rem;line-height:1.35}
+.section-heading h2{margin:0}
+h3{margin:0 0 10px;font-size:1rem;line-height:1.4}
+.tag{font-size:.76rem;color:var(--muted);white-space:nowrap}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;border:1px solid #d0dce9;border-radius:5px;background:#edf3fa;overflow:hidden}
+.video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#4b6b91}
+.video-placeholder p{font-size:.86rem;margin:10px 0 0}
+.play-mark{width:42px;height:42px}
+video{display:block;width:100%;height:100%;background:#000}
+.caption,figcaption{font-size:.81rem;color:var(--muted);line-height:1.45;margin:7px 0 0}
+.compact-list{padding-left:18px;margin:8px 0 0}
+.compact-list li{padding-left:1px;margin-bottom:9px}
+details{margin-top:12px;font-size:.84rem}
+summary{cursor:pointer;color:var(--navy);font-weight:600}
+details p{margin:8px 0 0;color:var(--muted)}
+.coupling-section{margin-top:24px;padding-top:17px;border-top:1px solid var(--line)}
+.trial-intro{margin:0 0 16px}
+.coupling-grid{display:grid;grid-template-columns:minmax(0,1.36fr) minmax(0,1fr);gap:25px}
+.comparison>p{margin:0 0 10px}
+figure{margin:0}
+.figure-link{display:block}
+.figure-link img{display:block;width:100%;height:auto}
+.trial-results{padding-left:18px;border-left:1px solid var(--line)}
+.table-wrap{max-width:100%;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.82rem;line-height:1.4}
+caption{text-align:left;color:var(--muted);font-size:.78rem;margin-bottom:6px}
+th,td{text-align:left;vertical-align:top;padding:7px 6px;border-bottom:1px solid var(--line)}
+thead th{background:var(--light);font-weight:600}
+tbody th{font-weight:600}
+td:nth-child(2){white-space:nowrap;font-variant-numeric:tabular-nums}
+.small-note{font-size:.74rem;color:var(--muted);margin:6px 0 11px}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:5px 18px;margin-top:22px;padding-top:10px;border-top:1px solid var(--line);font-size:.74rem;color:#647282}
+@media(min-width:1500px){.page{max-width:1180px}}
+@media(max-width:760px){.page{padding:20px 18px 14px}.top-grid,.coupling-grid{grid-template-columns:1fr;gap:19px}h1{font-size:1.38rem}.trial-results{border-left:0;padding-left:0}.coupling-section{margin-top:20px}.method-notes{padding-top:1px}footer{margin-top:18px}.tag{font-size:.72rem}}
+@media(prefers-reduced-motion:no-preference){a{transition:background-color .12s ease}}
